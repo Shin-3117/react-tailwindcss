@@ -4,7 +4,22 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        pink1: '#F3A4DF',
+        pink2: '#DD5EB6',
+        pink3: '#DE618F',
+        pink4: '#F48E9A',
+        blue1: '#8CB6ED',
+        blue2: '#2E75D0',
+        blue3: '#3671C6',
+        blue4: '#2160D0',
+        purple1: '#8E6DF2',
+        purple2: '#9F57B1',
+        purple3: '#391954',
+        purple4: '#000A20',
+      },
+    },
   },
   plugins: [
     require('tailwindcss-animated')
