@@ -24,16 +24,29 @@ const Login = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const { userId, password } = form;
-
-    if (!form.userId) {
-      return setErr({ ...err, userId: '아이디를 입력해주세요' });
-    }
-    if (!form.password) {
+    if (!form.userId && !form.password){
       return setErr({
+        userId: '아이디를 입력해주세요',
+        password: '비밀번호를 입력해주세요',
+      });
+    }
+    if (!form.userId) {
+      setErr({ ...err,
+        userId: '아이디를 입력해주세요',
+        password: ''
+      });
+    } 
+    if (!form.password) {
+      setErr({
         ...err,
         userId: '',
         password: '비밀번호를 입력해주세요',
+      });
+    }
+    if (!!form.userId && !!form.password){
+      return setErr({
+        userId: '',
+        password: '',
       });
     }
   }
@@ -44,16 +57,22 @@ const Login = () => {
         className='bg-opacity-50 bg-black w-96 border-2 border-purple3
         flex flex-col justify-center items-center z-20 text-white'>
         <h2 className="font-['pixel'] text-7xl">로그인</h2>
-        <input type="text" placeholder='UserName' onChange={onChange}
+        <input type="text" placeholder='UserName' 
+          onChange={onChange}
+          name="userId"
+          value={form.userId}
           className="font-['pixel'] p-2 m-1 border-2 rounded border-purple5
           bg-input w-72"/>
-        <p>{err.userId}</p>
+        <p className="font-['pixel'] text-red-500 mb-1">{err.userId}</p>
         {/* {!err.userId && <p>{err.userId}</p>} */}
 
-        <input type="password" placeholder='Password' onChange={onChange}
+        <input type="password" placeholder='Password' 
+          onChange={onChange}
+          name="password"
+          value={form.password}
           className="font-['pixel'] p-2 m-1 border-2 rounded border-purple5
           bg-opacity-25 bg-white w-72"/>
-        {!err.password && <p>{err.password}</p>}
+        <p className="font-['pixel'] text-red-500 mb-1">{err.password}</p>
 
         <button className="font-['pixel'] p-2 m-1 rounded w-72 bg-purple5">
           로그인</button>
