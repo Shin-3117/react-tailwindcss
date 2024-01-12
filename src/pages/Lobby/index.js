@@ -1,7 +1,8 @@
 const Lobby = () => {
   return (
     <div>
-      Lobby
+      <h2>Lobby</h2>
+
     </div>
     )
 }

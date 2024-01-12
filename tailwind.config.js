@@ -18,6 +18,9 @@ module.exports = {
         purple2: '#9F57B1',
         purple3: '#391954',
         purple4: '#000A20',
+        purple5: '#A5488C',
+        input: '#554E4E',
+        input2: 'rgba(85, 78, 78, 0.72)'
       },
     },
   },
