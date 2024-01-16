@@ -3,6 +3,7 @@ import { OpenVidu } from 'openvidu-browser';
 import axios from 'axios';
 import React, { Component } from 'react';
 import UserVideoComponent from './UserVideoComponent';
+import Chat from '../../components/Chat';
 
 const APPLICATION_SERVER_URL = process.env.NODE_ENV === 'production' ? '' : 'https://demos.openvidu.io/';
 
@@ -130,7 +131,7 @@ class Room extends Component {
                           let publisher = await this.OV.initPublisherAsync(undefined, {
                               audioSource: undefined, // The source of audio. If undefined default microphone
                               videoSource: undefined, // The source of video. If undefined default webcam
-                              publishAudio: true, // Whether you want to start publishing with your audio unmuted or not
+                              publishAudio: false, // Whether you want to start publishing with your audio unmuted or not
                               publishVideo: true, // Whether you want to start publishing with your video enabled or not
                               resolution: '640x480', // The resolution of your video
                               frameRate: 30, // The frame rate of your video
@@ -263,9 +264,10 @@ class Room extends Component {
         ) : null}
 
         {this.state.session !== undefined ? (
-          <div id="session" className=''>
+          <div id="session" className='bg-neutral-200'>
+            <h1 id="session-title" className='text-4xl'>{mySessionId}</h1>
+
             {/* <div id="session-header" className='text-center'>
-              <h1 id="session-title">{mySessionId}</h1>
               <input
                 className="bg-red-500 p-2"
                 type="button"
@@ -288,23 +290,24 @@ class Room extends Component {
                   </div>
               ) : null} */}
               {/* 나 */}
-            <div id="video-container" className="w-1/4 flex flex-col-reverse">
+            <div id="video-container" className="grid grid-rows-2 grid-cols-4 gap-2 p-2">
               {this.state.publisher !== undefined ? (
-                <div className="bg-green-500 p-1 h-1/4" 
+                <div className="bg-green-500 p-1 " 
                   onClick={() => this.handleMainVideoStream(this.state.publisher)}>
                       <UserVideoComponent streamManager={this.state.publisher}/>
                   </div>
               ) : null}
                 {/* 나말고 */}
               {this.state.subscribers.map((sub, i) => (
-                  <div key={sub.id} className="bg-teal-500 p-1 h-1/4" 
+                  <div key={sub.id} className="bg-teal-500 p-1" 
                     onClick={() => this.handleMainVideoStream(sub)}>
                       <span>{sub.id}</span>
                       <UserVideoComponent streamManager={sub}/>
                   </div>
               ))}
             </div>
-
+            
+            <Chat/>
             
           </div>
         ) : null}

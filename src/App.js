@@ -4,9 +4,9 @@
 function App() {
   return (
     <>
-    <div className='w-full h-screen bg-black
+    <div className="w-full h-screen bg-black
       text-9xl text-white
-      flex justify-center items-center'>
+      flex justify-center items-center">
         {/* <h1>abc 가나다</h1>
         <h2 className="font-['pixel']">abc 가나다</h2> */}
       <img className="w-4/5 max-w-2xl
